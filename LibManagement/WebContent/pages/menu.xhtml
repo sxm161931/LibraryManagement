@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+</h:head> 
+<h:body>
+ <ui:include src="/pages/loadingPopUp.xhtml"></ui:include>
+<h:form id="menuPanel">  
+  <h:panelGrid columns="2" >
+            <p:graphicImage value="https://s-media-cache-ak0.pinimg.com/originals/0a/cd/50/0acd5002683fbcf2b720004f201ee530.jpg" width="35%"/>
+           
+        </h:panelGrid>
+ 
+    <p:menubar >
+        <p:menuitem value="Home" icon="fa fa-home" url="/pages/home.xhtml" >
+        
+        </p:menuitem>
+ 
+        <p:submenu label="Book Management" icon="fa fa-book">
+        	<p:menuitem value="Add Books" url="/pages/addBooks.xhtml"></p:menuitem>
+            <p:menuitem value="Check Out Books" url="/pages/checkOutBook.xhtml"></p:menuitem>
+            <p:menuitem value="Check In Books" url="/pages/checkInBook.xhtml"></p:menuitem>
+        </p:submenu>
+ 
+        <p:submenu label="Borrower Management" icon="fa fa-users">
+            <p:menuitem value="Add Borrower" url="/pages/addBorrower.xhtml" />
+           
+        </p:submenu>
+ 
+        <p:submenu label="Fine Management" icon="fa fa-usd">
+            <p:menuitem value="Update Fine" url="/pages/updateFine.xhtml"></p:menuitem>
+            <p:menuitem value="View And Pay Fine" url="/pages/viewFine.xhtml"></p:menuitem>
+            <p:menuitem value="Fine History" url="/pages/fineHistory.xhtml"></p:menuitem>
+        </p:submenu>
+ 
+ 		 <p:menuitem value="Statistics" icon="fa fa-bar-chart" url="/pages/checkOutStats.xhtml" > </p:menuitem>
+ 		
+      
+ 
+        <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Search" value="#{bookBean.word}" />
+            <p:commandButton  icon="fa fa-search" action="#{bookBean.fetchSearchedResult}"  ajax="false"/>
+        </f:facet>
+    </p:menubar>
+    
+    
+    
+  
+</h:form>
+
+    
+</h:body>
+
+</html>

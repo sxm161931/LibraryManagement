@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+
+</h:head>
+<h:body>
+<f:view>
+	<ui:include src="/pages/menu.xhtml"></ui:include>
+
+ <p:growl autoUpdate="true" showDetail="true" sticky="true"/>
+ 	 
+		<p:panelGrid columns="1" cellpadding="5" id="checkOutPanel">
+	
+   <p:row >
+   <p:graphicImage value="#{bookBean.selectedSearchedBook.cover}" />
+   </p:row>
+						
+				<p:row>
+				<p:outputLabel value="Title : "></p:outputLabel>
+						<h:outputText value="#{bookBean.selectedSearchedBook.title}" />
+				</p:row>
+				<p:row>
+							<p:outputLabel value="ISBN : "></p:outputLabel>
+						<h:outputText value="#{bookBean.selectedSearchedBook.isbn}" />
+						</p:row>
+						<p:row>
+							<p:outputLabel value="Authors : "></p:outputLabel>
+						<h:outputText value="#{bookBean.selectedSearchedBook.authors}" />
+						</p:row>
+						</p:panelGrid>
+	<h:form>
+							<p:outputLabel value="Card Id : "></p:outputLabel>
+						<p:inputText value="#{bookLoansBean.bId}"></p:inputText>
+						
+						<p:commandButton  value="Submit" actionListener="#{bookLoansBean.searchedCheckOut}" >
+						 <f:attribute name="bookSelected" value="#{bookBean.selectedSearchedBook}" />
+						</p:commandButton> 
+					
+ </h:form>
+ </f:view>
+ <ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+</html>

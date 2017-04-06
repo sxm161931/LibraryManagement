@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+
+</h:head>
+<h:body>
+<f:view>
+	<ui:include src="/pages/menu.xhtml"></ui:include>
+	<f:metadata>
+	 <f:event listener="#{bookBean.init}" type="preRenderView"></f:event>
+	</f:metadata>
+		 <p:growl  showDetail="true" sticky="true"/>
+ <h:form>
+ 	<p:panel  header="Matching Results" style="margin-bottom:10px;" >
+   <p:dataTable var="book1" value="#{bookBean.bookList}" 
+				id="searchBook" sortBy="#{book1.title}">
+				<p:column>
+				<p:graphicImage value="#{book1.cover}" />
+				</p:column>
+				
+				<p:column headerText="Title" >
+						<h:outputText value="#{book1.title}" />
+					</p:column>	
+					<p:column headerText="ISBN" >
+						<h:outputText value="#{book1.isbn}" />
+					</p:column>
+				<p:column headerText="Authors" >
+						<h:outputText value="#{book1.authors}" />
+					</p:column>	
+				<p:column headerText="Availability" >
+						<p:commandButton icon="#{book1.icon}" disabled="#{!book1.available}" ></p:commandButton> 
+					</p:column>		
+					
+				</p:dataTable>
+				</p:panel>
+ </h:form>
+ </f:view>
+</h:body>
+</html>

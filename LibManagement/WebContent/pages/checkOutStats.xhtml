@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+<style type="css/javascript">
+
+function chartExtender() {        
+    this.cfg.grid = {             
+    background: 'transparent',
+     gridLineColor: '#303030',
+     drawBorder: false,
+}
+</style>
+</h:head>
+<ui:include src="/pages/menu.xhtml"></ui:include>
+
+<h:body>
+  <f:metadata>
+	 <f:event listener="#{chartBean.createBarModel}" type="preRenderView"></f:event>
+	</f:metadata>  
+	
+		<h:form>
+			<p:growl showDetail="true" id="growlStats" sticky="true"/>
+				 <h:panelGrid columns="3" columnClasses="left,right" style="width:100%">
+				<p:chart type="pie" model="#{chartBean.barModel}" style="width:400px;height:300px"></p:chart>
+				
+				<p:chart type="pie" model="#{chartBean.checkOutModel}" style="width:400px;height:300px"></p:chart>	
+				
+				<p:chart type="pie" model="#{chartBean.dueModel}" style="width:400px;height:300px"></p:chart>
+				</h:panelGrid>
+		</h:form>
+		<ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

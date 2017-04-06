@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	
+</h:head>
+<h:body>
+
+<h:inputText value="author"></h:inputText>
+	<h:form>
+		<p:dataScroller value="#{displaySearchBookResult.bookList}" var="bk"
+			chunkSize="5">
+			<f:facet name="header">
+            Scroll Down to Load More Books
+        </f:facet>
+
+			<f:facet name="loader">
+				<p:commandButton type="button" value="More"
+					icon="ui-icon-circle-triangle-s" />
+			</f:facet>
+
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<p:graphicImage value="#{bk.cover}" />
+
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+
+						<h:outputText value="Title:" />
+						
+						<h:commandLink value="#{bk.title}" style="font-weight: bold" action="test"> </h:commandLink>
+						<h:outputText value="ISBN:" />
+						<h:outputText value="#{bk.isbn}" style="font-weight: bold" />
+						<h:outputText value="Authors:" />
+						<h:outputText value="#{bk.authors}" style="font-weight: bold;background-color:powderblue;" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataScroller>
+	</h:form>
+</h:body>
+</html>

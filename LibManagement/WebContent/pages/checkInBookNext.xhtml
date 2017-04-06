@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<ui:include src="/pages/menu.xhtml"></ui:include>
+
+<h:body>
+
+   
+	<f:view>
+		<h:form>
+			<p:growl autoUpdate="true" sticky="true"/>
+			<p:panel header="Check In Book" style="margin-bottom:10px;">
+				<h:panelGrid columns="2" cellpadding="5" id="checkInPanelNext">
+					<p:dataTable var="bookLoans" value="#{bookLoansBean.list}" id="bookLoanDataTable"
+					selection="#{bookLoansBean.selectedLoans}" rowKey="#{bookLoans.loan_id}" style="margin-bottom:0">
+						
+						
+						
+						<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+						<p:column headerText="ISBN">
+							<h:outputText value="#{bookLoans.isbn}" />
+						</p:column>
+
+						<p:column headerText="Card_id">
+							<h:outputText value="#{bookLoans.bId}" />
+						</p:column>
+
+						<p:column headerText="Name">
+							<h:outputText value="#{bookLoans.name}" />
+						</p:column>
+						</p:dataTable>
+						<f:facet name="footer">
+           				 <p:commandButton  action="#{bookLoansBean.getSelectedBookLoans}"  value="Submit"  />
+        				</f:facet>
+						
+					
+
+				
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</f:view>
+	<ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

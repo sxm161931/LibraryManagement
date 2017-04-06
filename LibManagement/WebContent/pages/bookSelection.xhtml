@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<ui:include src="/pages/menu.xhtml"></ui:include>
+
+<h:body>
+ <f:view>
+	<h:form>
+		<p:growl autoUpdate="true"  sticky="true" />
+		 <p:panel  header="Check Out Book" style="margin-bottom:10px;">
+		 <p:graphicImage value="#{bookBean.selectedSearchedBook.cover}" />
+		<h:panelGrid columns="2" cellpadding="5" >
+		
+		<p:outputLabel value="Title : "></p:outputLabel>
+		<h:outputText value="#{bookBean.selectedSearchedBook.title}" />
+		<p:outputLabel value="ISBN : "></p:outputLabel>
+		<h:outputText value="#{bookBean.selectedSearchedBook.isbn}" />
+		<p:outputLabel value="Authors : "></p:outputLabel>
+		<h:outputText value="#{bookBean.selectedSearchedBook.authors}" />
+		<p:outputLabel value="Id :"></p:outputLabel>
+		<p:inputText value="#{bookLoansBean.bId}"></p:inputText>
+        <p:commandButton actionListener="#{bookLoansBean.searchedCheckOut}" value="Submit" ajax="false">
+        <f:attribute name="bookSelected" value="#{bookBean.selectedSearchedBook}" />
+        </p:commandButton>
+		</h:panelGrid>
+		</p:panel>
+	</h:form>
+	 </f:view>
+	 <ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

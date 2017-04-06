@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<ui:include src="/pages/menu.xhtml"></ui:include>
+
+<h:body>
+ <f:view>
+	<h:form>
+		<p:growl autoUpdate="true"  sticky="true" />
+		 <p:panel  header="Add Borrower" style="margin-bottom:10px;">
+		<h:panelGrid columns="2" cellpadding="5" id="borrowerPanel">
+		<p:outputLabel value="First Name:" for="fname"></p:outputLabel>
+		<p:inputText id="fname" value="#{borrowerBean.fName}" required="true"></p:inputText>
+		<p:outputLabel value="Last Name:" for="lname"></p:outputLabel>
+		<p:inputText id="lname" value="#{borrowerBean.lName}" required="true"></p:inputText>
+		<p:outputLabel for="ssn" value="SSN:" />
+        <p:inputMask id="ssn" value="#{borrowerBean.ssn}" mask="999-99-9999" required="true"/>
+		<p:outputLabel for="phone" value="Phone:" />
+        <p:inputMask id="phone" value="#{borrowerBean.phone}" mask="(999) 999-9999" />
+		
+		<p:outputLabel for="email" value="Email:" />
+        <p:inputMask id="email" value="#{borrowerBean.email}" />
+        
+        <p:outputLabel for="address" value="Address:" />
+        <p:inputMask id="address" value="#{borrowerBean.address}" required="true" />
+        <p:outputLabel for="state" value="State:" />
+        <p:inputMask id="state" value="#{borrowerBean.state}" required="true"/>
+        <p:outputLabel for="city" value="City:" />
+        <p:inputMask id="city" value="#{borrowerBean.city}" required="true"/>
+        
+        <p:commandButton value="Reset" update="borrowerPanel" actionListener="#{borrowerBean.reset}"/>
+        <p:commandButton actionListener="#{borrowerBean.addBorrower}" value="Submit" update="borrowerPanel">
+        </p:commandButton>
+		</h:panelGrid>
+		</p:panel>
+	</h:form>
+	 </f:view>
+	 <ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

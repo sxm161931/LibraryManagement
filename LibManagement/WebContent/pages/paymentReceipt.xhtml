@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+
+</h:head>
+<h:body >
+
+	<ui:include src="/pages/menu.xhtml"></ui:include>
+
+	<f:view>
+		<p:growl autoUpdate="true" sticky="true"></p:growl>
+		<h:form >
+
+				<p:panel  header="Payment Receipt" style="margin-bottom:10px;"  id="paymentReceipt" >
+				<p:outputLabel value="Thank You !!! Payment Received."></p:outputLabel>
+				<p:panelGrid columns="2" style="display:block;margin-top: 20px;margin-bottom: 20px">
+				
+				<p:outputLabel value="Card # : #{fineBean.borrowerId}"></p:outputLabel>
+				<p:outputLabel value="Name : #{fineBean.name}"></p:outputLabel>
+				</p:panelGrid>
+				<p:dataTable var="fine" value="#{fineBean.beanList}" sortBy="#{fineBean.borrowerId}" 
+				 rowKey="#{fine.loanId}" >
+				<p:column>
+				<p:graphicImage value="#{fine.cover}" />
+				</p:column>
+					<p:column headerText="Loan Id" >
+						<h:outputText value="#{fine.loanId}" />
+					</p:column>
+					<p:column headerText="ISBN" >
+						<h:outputText value="#{fine.isbn}" />
+					</p:column>
+					<p:column headerText="Title" >
+						<h:outputText value="#{fine.title}" />
+					</p:column>
+					<p:column headerText="Amount Paid">
+						<h:outputText value="$ #{fine.fineAmt}" >
+						</h:outputText>
+					</p:column>
+					
+					<p:summaryRow>
+						<p:column colspan="4" style="text-align:right">
+							<h:outputText value="Total:" />
+						</p:column>
+						<p:column>
+							<h:outputText value="$ #{fineBean.totalFine}">
+							</h:outputText>
+						</p:column>
+					</p:summaryRow>
+					
+				</p:dataTable>
+				<p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-top: 20px">
+    			<p:printer target="paymentReceipt" />
+				</p:commandButton>
+           				 
+			</p:panel>
+			
+		</h:form>
+	</f:view>
+
+<ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

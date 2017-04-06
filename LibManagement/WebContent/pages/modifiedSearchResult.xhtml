@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+<style type="text/css">
+	.highlight { background-color: powderblue; }	
+	
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	
+	$('.highlight').replaceWith(function () {
+        return this.innerText;
+    });
+    highlightOnly($("input:text").val());
+	  });
+function highlightOnly(text) {	 
+$('.bookDescription td').each(function (i, e) {
+	 
+    var $e = $(e);
+    var simpletext = new RegExp("(" + text + ")","gi"); 
+    //alert($(e).html().split(simpletext));
+    
+    var myStringArray = $(e).html().split(simpletext);
+    jQuery.each( myStringArray, function( i, val ) {
+    	 
+    	 if(val.toLowerCase() == text)
+    		 {
+    		 $e.html($(e).html().replace(val, '<span class="highlight">' + val + '</span>'));
+    		 }
+    	 else if(val == text)
+    		 {
+    		 $e.html($(e).html().replace(val, '<span class="highlight">' + text + '</span>'));
+    		 }
+    	  
+    	});
+    
+   
+});
+}
+
+</script>
+</h:head>
+<h:body>
+<f:view>
+	<ui:include src="/pages/menu.xhtml"></ui:include>
+	
+		 <p:growl id="searchedResult" showDetail="true" sticky="true"/>
+ <h:form>
+ 	<p:panel  header="Matching Results" style="margin-bottom:10px;" >
+   <p:dataTable var="book1" value="#{bookBean.bookList}"  
+				id="searchBook" sortBy="#{book1.title}" styleClass="projects-list">
+				
+				<p:column  style="width:15%;text-align: center;" headerText="Cover">
+				<p:graphicImage value="#{book1.cover}" />
+				</p:column>
+				
+				<p:column   style="width:75%;" headerText="Book Description">
+				<h:panelGrid style="border: none;" styleClass="bookDescription">
+				<h:outputText value="Title : #{book1.title}" />
+				<h:outputText value="ISBN : #{book1.isbn}" />
+				<h:outputText value="Authors : #{book1.authors}" />
+				</h:panelGrid>
+				
+						</p:column>
+				<p:column headerText="Availability"   style="width:10%;text-align: center;">
+						<p:commandButton  icon="#{book1.icon}" disabled="#{!book1.available}" actionListener="#{bookBean.selectedBookFromSearch}" action="bookSelection" >
+						 <f:attribute name="bookSelected" value="#{book1}" />
+						</p:commandButton> 
+					</p:column>	
+				</p:dataTable>
+				</p:panel>
+				
+				
+ </h:form>
+ 
+ <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+    <h:outputText value="This is a Modal Dialog." />
+</p:dialog> 
+ </f:view>
+ <ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+
+</html>

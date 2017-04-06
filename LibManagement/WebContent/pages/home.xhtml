@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Library Management</title>
+
+<style type="css/javascript">
+
+.customAlign {
+vertical-align: top;
+}
+</style>
+</h:head>
+<h:body>
+
+ <ui:include src="/pages/menu.xhtml"></ui:include>
+<f:view>
+   
+  <f:metadata>
+	 <f:event listener="#{tagCloud.init}" type="preRenderView"></f:event>
+	</f:metadata>    
+  
+  <h:form id="form">
+  <p:growl autoUpdate="true" showDetail="true" sticky="true"/>
+<h:panelGrid columns="2" style="width:100%;margin-top: 1%;vertical-align: top;" columnClasses="customAlign"  rowClasses="customAlign">
+<h:column>
+<p:imageSwitch effect="fade" widgetVar="switcher" slideshowAuto="true" >
+    <p:graphicImage width="900px;" height="375px;" url="https://images.vice.com/vice/images/articles/meta/2016/03/30/public-libraries-are-the-only-glimpse-of-community-this-country-has-left-1459351976.jpg" />
+    <p:graphicImage url="http://www.westminster-church.org/assets/images/library.jpg" width="900px;" height="375px;"/>
+    <p:graphicImage url="https://archive-media-1.nyafuu.org/wg/image/1467/17/1467174343025.png" width="900px;" height="375px;"/>
+    <p:graphicImage width="900px;" height="375px;" url="https://static1.squarespace.com/static/5446c540e4b05d7074088ef0/t/55e6dd7ce4b0c94c8af90ab9/1418734303957/Stockholm-Public-Library-Interior-2.jpg?format=1500w" />
+    
+</p:imageSwitch>
+</h:column>
+<h:column>
+    <p:tagCloud model="#{tagCloud.model}" style="margin-top: 10px; vertical-align:top;">
+      <p:ajax event="select" listener="#{tagCloud.onSelect}" />
+    </p:tagCloud>
+    </h:column>
+ </h:panelGrid>   
+</h:form>
+</f:view>
+<ui:include src="/pages/footer.xhtml"></ui:include>
+</h:body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	<managed-bean>
+		<managed-bean-name>departmentBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.DepartmentBean</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>borrowerBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.BorrowerBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>bookLoansBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.BookLoansBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>fineBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.FineBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>bookBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.BookBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tagCloud</managed-bean-name>
+		<managed-bean-class>com.test.bean.TagCloud</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>booksUtilityBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.BooksUtilityBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>chartBean</managed-bean-name>
+		<managed-bean-class>com.test.bean.ChartBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/pages/enterDeptDetails.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{departmentBean.afterFormSubmit}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/success.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>
